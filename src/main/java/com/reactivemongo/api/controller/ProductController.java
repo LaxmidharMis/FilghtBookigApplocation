@@ -39,7 +39,7 @@ public class ProductController {
         return service.getProductInRange(min,max);
     }
 
-    @PostMapping
+    @PostMapping("/saveproduct")
     public Mono<ProductDto> saveProduct(@RequestBody Mono<ProductDto> productDtoMono){
         System.out.println("controller method called ...");
         return service.saveProduct(productDtoMono);
@@ -51,8 +51,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Mono<Void> deleteProduct(@PathVariable String id){
-        return service.deleteProduct(id);
+    public String deleteProduct(@PathVariable String id){
+       service.deleteProduct(id);       
+       return "Product deleted ";
     }
 
 
